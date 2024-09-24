@@ -1,0 +1,22 @@
+{
+  "name": "notion-extractor",
+  "version": "1.0.0",
+  "description": "Utilities to extract data from Notion pages and databases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpmenichetti/notion-extractor.git"
+  },
+  "author": "toolkas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpmenichetti/notion-extractor/issues"
+  },
+  "homepage": "https://github.com/jpmenichetti/notion-extractor#readme",
+  "devDependencies": {
+    "@notionhq/client": "^2.2.15"
+  }
+}
