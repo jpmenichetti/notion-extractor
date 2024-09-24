@@ -18,5 +18,8 @@
   "homepage": "https://github.com/jpmenichetti/notion-extractor#readme",
   "devDependencies": {
     "@notionhq/client": "^2.2.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

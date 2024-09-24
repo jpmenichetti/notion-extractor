@@ -1,9 +1,10 @@
 const { Client } = require("@notionhq/client")
 const https = require('https');
 const fs = require('fs');
+require('dotenv').config()
 
 const notion = new Client({
-  auth: "secret_IGv6j3lKhtpG1TkGnK6hI4hHEoNe2NBHd4Q0cqlKNaT",
+  auth: process.env.NOTION_KEY,
 });
 
 //const blockId = '7f279625baaa4805b920ab70e4bacf07';
