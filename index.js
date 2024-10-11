@@ -7,8 +7,10 @@ const notion = new Client({
 	auth: process.env.NOTION_KEY,
 });
 
-//const blockId = '7f279625baaa4805b920ab70e4bacf07';
-const blockId = '560911c8fa55461d822a916e9711131d';
+let actionsMap = {};
+actionsMap["image"] = downloadImage;
+
+const blockId = '110b84eca3da812da43de38f75d80097';
 traverseBlock(blockId);
 
 function traverseBlock(blockId) {
@@ -24,18 +26,25 @@ function traverseBlock(blockId) {
 				parentBlock: blockId,
 				sequence: i 
 			}
+			action = actionsMap[node.type];
+			if(action){
+				action(node.image, nodeContext);
+			}else{
+				console.log(`Skipping type ${node.type}`)
+			}
+
 			//if(node.type == "paragraph"){
 			//	let paragraph = node.paragraph;
 			//	for (var j = 0; j < paragraph.rich_text.length; j++) {
 			//		console.log(paragraph.rich_text[j].text.content);
 			//	}
 			//}
-			if (node.type == "image") {
-				downloadImage(node.image, nodeContext);
-			}
-			else {
-				console.log(`Skipping type ${node.type}`)
-			}
+			//if (node.type == "image") {
+			//	downloadImage(node.image, nodeContext);
+			//}
+			//else {
+			//	console.log(`Skipping type ${node.type}`)
+			//}
 		}
 	});
 }
