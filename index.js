@@ -8,9 +8,24 @@ const notion = new Client({
 });
 
 let actionsMap = {};
+//actionsMap["paragraph"] = acumulateText;
 actionsMap["image"] = downloadImage;
 
-const blockId = '110b84eca3da812da43de38f75d80097';
+const noteLink = "https://www.notion.so/AW2-The-Lake-House-131b84eca3da81739174ea0ef4bf38a1?pvs=4"
+let blockId;
+
+//Text between the last "-" and the fist "?"
+const idExtractor = /\-(?!.*\-)(.*)\?/g;
+const regExResults = noteLink.matchAll(idExtractor);
+if(regExResults){
+	const match =regExResults.next().value;
+	blockId = match[1];
+	console.log("block Id found: "+blockId);
+}else{
+	console.log("No block Id found");
+	return;
+}
+
 traverseBlock(blockId);
 
 function traverseBlock(blockId) {
@@ -32,19 +47,6 @@ function traverseBlock(blockId) {
 			}else{
 				console.log(`Skipping type ${node.type}`)
 			}
-
-			//if(node.type == "paragraph"){
-			//	let paragraph = node.paragraph;
-			//	for (var j = 0; j < paragraph.rich_text.length; j++) {
-			//		console.log(paragraph.rich_text[j].text.content);
-			//	}
-			//}
-			//if (node.type == "image") {
-			//	downloadImage(node.image, nodeContext);
-			//}
-			//else {
-			//	console.log(`Skipping type ${node.type}`)
-			//}
 		}
 	});
 }
